@@ -123,7 +123,7 @@ async function run() {
         // serviceRequestData related Api
 
         // Getting user request data
-        app.get('/requestData', verifyAdmin, async (req, res) => {
+        app.get('/requestData',verifyToken, verifyAdmin, async (req, res) => {
             const result = await serviceRequestCollection.find().toArray()
             res.send(result)
         })
@@ -140,7 +140,7 @@ async function run() {
         });
 
         // User contact data related api
-        app.get('/contactData', verifyAdmin, async (req, res) => {
+        app.get('/contactData',verifyToken, verifyAdmin, async (req, res) => {
             const result = await userDataCollection.find().toArray()
             res.send(result)
         })
